@@ -31,7 +31,7 @@ a {
 
         /* width */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 12px;
         }
 
         /* Track */
@@ -49,7 +49,8 @@ a {
             position: sticky;
             top: 0;
             display: block;
-            width: 260px;
+            border-right: 1px solid white;
+            width: 320px;
             background-color: $sidebar-bg-color;
             height: 100vh;
             transition: all 0.5s ease-in-out;
@@ -96,46 +97,76 @@ a {
                     }
                 }
 
+                h2 {
+                    text-align: center;
+                    color: #fff;
+                    margin-bottom: 18px;
+                }
+
+                .seperator {
+                    border-top: 1px solid white;
+                    margin: 12px 0px;
+                }
+
                 .links {
                     display: flex;
                     flex-direction: column;
 
-                    .link {
+                    .wrapper {
                         display: flex;
-                        gap: 12px;
                         align-items: center;
-                        padding: 6px 14px;
+                        justify-content: space-between;
+                        gap: 12px;
                         margin: 4px 0px;
 
-                        .icon {
-                            color: #fff;
-                            size: 1rem;
+                        .link {
+                            display: flex;
+                            align-items: center;
+                            gap: 12px;
+                            width: 100%;
+                            padding: 6px 14px;
+                            transition: all 0.5s;
+
+                            .icon {
+                                color: #fff;
+                                size: 1rem;
+                            }
+
+                            span {
+                                color: #fff;
+                            }
                         }
 
-                        span {
-                            color: #fff;
+                        .pin {
+                            margin-right: 18px;
+                            padding-top: 6px;
+
+                            .icon {
+                                color: #fff;
+                                size: 1rem;
+                            }
+
+                            :hover {
+                                color: yellow;
+                                cursor: default;
+                            }
+                        }
+
+                        .active {
+                            background-color: #85898c;
+                        }
+
+                        .link:hover {
+                            background-color: #85898c;
                         }
                     }
-
-                    .active {
-                        background-color: #85898c;
-                    }
-                }
-
-                .secondary-link {
-                    border-top: 1px solid #85898c;
-                    margin-top: 22px;
-                    padding: 8px 0px;
-                    border-bottom: 1px solid #85898c;
-                    margin-bottom: 22px;
-                }
-
-                .reset-link {
-                    padding-bottom: 12px;
                 }
 
                 .status {
                     display: flex;
+                    padding: 6px 14px;
+                    gap: 12px;
+                    margin: 4px 0px;
                     align-items: center;
                     justify-content: space-evenly;
                     margin-top: 18px;
@@ -207,10 +238,103 @@ a {
             }
         }
 
+        .diagnostics {
+            background-color: #595959;
+
+            .card {
+                .col {
+                    grid-column: span 12 !important;
+                    flex-direction: row !important;
+
+                    .accordion {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .card-expanded {
+                margin-top: 12px;
+
+                .toggled-accordion {
+                    margin-bottom: 18px;
+                    padding: 12px;
+                    background-color: #fff;
+
+                    .header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+
+                        .icon{
+                            color: rgba(0, 0, 0, 0.5);
+
+                            :hover{
+                                color: red;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    .content{
+                        margin-top: 12px;
+                        padding: 12px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                button {
+                    background-color: rgb(38, 136, 38);
+                    color: #fff;
+                    border: none;
+                    padding: 8px;
+                    width: 100%;
+                }
+            }
+        }
+
+        .setings {
+            background-color: #595959;
+
+            .wrapper {
+                background-color: #fff;
+                padding: 12px;
+                display: grid;
+                grid-template-columns: repeat(12, 1fr);
+                gap: 18px;
+
+                .nav-card {
+                    grid-column: span 4;
+                    width: 100%;
+                    padding: 32px 12px;
+                    background-color: #353a40;
+                    color: rgba(255, 255, 255, 0.7);
+                    transition: all 0.5s;
+                    display: flex;
+                    gap: 8px;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+
+                    .text {
+                        font-weight: bold;
+                    }
+                }
+
+                .nav-card:hover {
+                    color: #fff;
+                }
+            }
+        }
+
+        .status {
+            background-color: #fff;
+        }
+
         .main-content {
             min-height: calc(100% - 65px);
-            padding: 24px 10%;
-            background-color: #585858;
+            padding: 24px 5%;
 
             .card {
                 background-color: #fff;
@@ -370,15 +494,16 @@ a {
         right: 18px;
         width: 52px;
         height: 52px;
-        background-color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(0, 0, 255, 0.6);
         border-radius: 50%;
         z-index: 100;
+        color: #fff;
         transition: all 0.5s ease-in-out;
         box-shadow: 0 1.2px 1.92251px rgba(0, 0, 0, .03), 0 2px 3.68135px rgba(0, 0, 0, .04), 0 1px 5px rgba(0, 0, 0, .05);
 
         &:hover {
             cursor: pointer;
-            background-color: rgba(255, 255, 255, 1);
+            background-color: rgba(0, 0, 255, 0.9);
 
         }
     }
@@ -392,7 +517,7 @@ a {
         right: 18px;
         width: 370px;
         height: fit-content;
-        background-color: #ebebec;
+        background-color: rgba(0, 0, 255, 1);
         border-radius: $md-radius;
         z-index: 120;
         padding: 18px 12px;
@@ -403,12 +528,12 @@ a {
             position: absolute;
             right: 12px;
             top: 12px;
-            color: rgba(0, 0, 0, .6);
+            color: rgba(255, 255, 255, 0.8);
 
             &:hover {
                 cursor: pointer;
                 transition: 0.5s ease-in-out;
-                color: rgba(0, 0, 0, 1);
+                color: #fff;
             }
         }
 
@@ -418,8 +543,9 @@ a {
             margin-bottom: 18px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.4);
             padding-bottom: 16px;
-            font-size: 22px;
+            font-size: 24px;
             user-select: none;
+            color: #fff;
         }
 
         .row {

@@ -1,9 +1,9 @@
+import React, { useState, useEffect } from 'react';
 import { AArrowUp, CircleCheckBig, CircleX, Contrast, Link, ScanEye, WholeWord } from 'lucide-react';
 import { useTextSize } from '../contexts/TextSizeContext';
 import { useTextSpace } from '../contexts/TextSpaceContext';
 import { useBlackWhite } from '../contexts/BlackWhiteContext';
 import { useShowLink } from '../contexts/ShowLinkContext';
-import { useState } from 'react';
 import { Tooltip } from 'react-tooltip';
 
 const SettingsModal = () => {
@@ -14,28 +14,96 @@ const SettingsModal = () => {
 
     const [showSettingsModal, setShowSettingsModal] = useState(false);
 
+    useEffect(() => {
+        const savedSettings = localStorage.getItem('settings');
+        if (savedSettings) {
+            const { textSize, textSpace, blackWhite, showLink } = JSON.parse(savedSettings);
+            setUpdateTextSize(textSize);
+            setUpdateTextSpace(textSpace);
+            setUpdateBlackWhite(blackWhite);
+            setUpdateShowLink(showLink);
+
+        }
+    }, []);
+
     const onSetTextSize = () => {
         if (updateTextSize >= 1.4) {
             setUpdateTextSize(1);
+
+            const settings = {
+                textSize: 1,
+                textSpace: updateTextSpace,
+                blackWhite: updateBlackWhite,
+                showLink: updateShowLink
+            };
+
+            localStorage.setItem('settings', JSON.stringify(settings));
         } else {
+            const settings = {
+                textSize: updateTextSize + 0.2,
+                textSpace: updateTextSpace,
+                blackWhite: updateBlackWhite,
+                showLink: updateShowLink
+            };
+
+            localStorage.setItem('settings', JSON.stringify(settings));
+
             setUpdateTextSize(updateTextSize + 0.2);
         }
+
+
     };
 
     const onSetTextSpace = () => {
         if (updateTextSpace >= 2.5) {
             setUpdateTextSpace(1);
+
+            const settings = {
+                textSize: updateTextSize,
+                textSpace: 1,
+                blackWhite: updateBlackWhite,
+                showLink: updateShowLink
+            };
+
+            localStorage.setItem('settings', JSON.stringify(settings));
         } else {
+            const settings = {
+                textSize: updateTextSize,
+                textSpace: updateTextSpace + 0.5,
+                blackWhite: updateBlackWhite,
+                showLink: updateShowLink
+            };
+
+            localStorage.setItem('settings', JSON.stringify(settings));
+
             setUpdateTextSpace(updateTextSpace + 0.5);
         }
     };
 
     const onSetBlackWhite = () => {
         setUpdateBlackWhite(!updateBlackWhite);
+
+        const settings = {
+            textSize: updateTextSize,
+            textSpace: updateTextSpace,
+            blackWhite: !updateBlackWhite,
+            showLink: updateShowLink
+        };
+
+        localStorage.setItem('settings', JSON.stringify(settings));
     };
 
     const onSetShowLink = () => {
         setUpdateShowLink(!updateShowLink);
+
+        const settings = {
+            textSize: updateTextSize,
+            textSpace: updateTextSpace,
+            blackWhite: updateBlackWhite,
+            showLink: !updateShowLink
+        };
+
+        localStorage.setItem('settings', JSON.stringify(settings));
     };
 
     return (
@@ -140,11 +208,8 @@ const SettingsModal = () => {
                         </div>
                     )
             }
-
-
-
         </>
     )
 }
 
-export default SettingsModal
+export default SettingsModal;

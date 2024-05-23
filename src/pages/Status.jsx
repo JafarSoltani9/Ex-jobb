@@ -29,6 +29,7 @@ const Status = () => {
         fontSize: `${updateTextSize * 16}px`,
         letterSpacing: `${updateTextSpace * 1}px`
     };
+    
     const accordionTitleBGStyle = {
         backgroundColor: updateBlackWhite ? '#000' : 'rgba(133, 137, 140, 0.3)',
     };
@@ -57,7 +58,7 @@ const Status = () => {
                         updateTextSpace={updateTextSpace}
                     />
                 </div>
-                <div className="main-content" style={{ backgroundColor: updateBlackWhite ? '#000' : '#fff' }}>
+                <div className="main-content status" style={{ backgroundColor: updateBlackWhite ? '#000' : '#fff' }}>
                     <div className="card">
                         <div className="col">
                             <div className="accordion">

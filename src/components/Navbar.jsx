@@ -25,7 +25,7 @@ const Navbar = ({ title, updateTextSize, updateBlackWhite, updateShowLink, updat
             <div className="right">
                 <Link to={'/connect-with-phone'}><Wifi  style={linkStyle} size={18} className='icon' /></Link>
                 <Link to={'/settings'}><Settings  style={linkStyle} size={18} className='icon' /></Link>
-                <span>Service(activated until 00:00)</span>
+                <span>Service(activated until 09:37)</span>
                 <span>
                     <Globe size={18} className='icon' />
                     <select name="language">
@@ -34,7 +34,7 @@ const Navbar = ({ title, updateTextSize, updateBlackWhite, updateShowLink, updat
                     </select>
                 </span>
                 <Link to={'/contact-us'}><Phone style={linkStyle} size={18} className='icon' /></Link>
-                <span>00:00</span>
+                <span>09:34</span>
             </div>
         </nav>
     )
